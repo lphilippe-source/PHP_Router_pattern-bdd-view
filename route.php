@@ -55,9 +55,9 @@ public static function run($basepath = '/'){
     // Add 'find string end' automatically
     $route['expression'] = '@'.'^'.$route['expression'].'$'.'@i';
     $route['expression'] = str_replace('/','\/',$route['expression']);
-    echo $route['expression'].'<br/>';
-    var_dump(preg_match($route['expression'],$path,$matches));
-    var_dump($matches);
+    // echo $route['expression'].'<br/>';
+    // var_dump(preg_match($route['expression'],$path,$matches));
+    // var_dump($matches);
     // Check path match	 ["path"]=> string(6) "/ocr2/admin"
     // if(preg_match('#'.$route['expression'].'#',$path,$matches)){
     if(preg_match($route['expression'],$path,$matches)){
@@ -68,7 +68,7 @@ public static function run($basepath = '/'){
       if(strtolower($method) == strtolower($route['method'])){
 
         array_shift($matches);// Always remove first element. This contains the whole string
-        var_dump($matches);
+        // var_dump($matches);
         if($basepath!=''&&$basepath!='/'){
           array_shift($matches);// Remove basepath
         }
