@@ -2,10 +2,12 @@
 require 'autoload.php';
 // var_dump(parse_url($_SERVER['REQUEST_URI']));
 // Add base route (startpage)
-route::add('/admin',function(){
-  echo 'bienvenue';}
-);
-Route::run('/ocr2');
+
+
+// $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+// var_dump($parsed_url['path']);
+// var_dump($parsed_url);
+// var_dump($_SERVER['REQUEST_METHOD']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,9 +18,12 @@ Route::run('/ocr2');
   </head>
   <body>
     <div class="container">
-    <h1 class="h1 text-center">//ADMIN</h1>
-    <?php
     
+    <?php
+    route::add('/admin',function(){
+      // var_dump( Route::$routes);
+    // echo $arg;
+      echo '<h1 class="h1 text-center">//ADMIN</h1>';
     function includeFileWithVariables($fileName, $variables) {
       // $variables;
       include $fileName;
@@ -62,3 +67,8 @@ Route::run('/ocr2');
     </div>
   </body>
 </html>
+<?php
+}
+);
+Route::run('/ocr2');
+?>

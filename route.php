@@ -1,7 +1,6 @@
 <?php 
 class Route{
-
-private static $routes = Array();
+public static $routes = Array();
 private static $pathNotFound = null;
 private static $methodNotAllowed = null;
 
@@ -23,7 +22,7 @@ public static function methodNotAllowed($function){
 
 public static function run($basepath = '/'){
 
-  // Parse current url
+  // Parse current url    ["path"]=> string(6) "/ocr2/"
   $parsed_url = parse_url($_SERVER['REQUEST_URI']);//Parse Uri
 
   if(isset($parsed_url['path'])){
@@ -32,32 +31,36 @@ public static function run($basepath = '/'){
     $path = '/';
   }
 
-  // Get current request method
+  // Get current request method  "GET"
   $method = $_SERVER['REQUEST_METHOD'];
-
+  
   $path_match_found = false;
 
   $route_match_found = false;
+// ["expression"]=> string(1) "/" ["function"]=> object(Closure)#2 (0) { } ["method"]=> string(3) "get"
 
   foreach(self::$routes as $route){
 
     // If the method matches check the path
 
     // Add basepath to matching string
+    // /ocr2
     if($basepath!=''&&$basepath!='/'){
       $route['expression'] = '('.$basepath.')'.$route['expression'];
     }
 
     // Add 'find string start' automatically
-    $route['expression'] = '^'.$route['expression'];
+    // $route['expression'] = $route['expression'];
 
     // Add 'find string end' automatically
-    $route['expression'] = $route['expression'].'$';
-
-    // echo $route['expression'].'<br/>';
-
-    // Check path match	
-    if(preg_match('#'.$route['expression'].'#',$path,$matches)){
+    $route['expression'] = '@'.'^'.$route['expression'].'$'.'@i';
+    $route['expression'] = str_replace('/','\/',$route['expression']);
+    echo $route['expression'].'<br/>';
+    var_dump(preg_match($route['expression'],$path,$matches));
+    var_dump($matches);
+    // Check path match	 ["path"]=> string(6) "/ocr2/admin"
+    // if(preg_match('#'.$route['expression'].'#',$path,$matches)){
+    if(preg_match($route['expression'],$path,$matches)){
 
       $path_match_found = true;
 
@@ -65,7 +68,7 @@ public static function run($basepath = '/'){
       if(strtolower($method) == strtolower($route['method'])){
 
         array_shift($matches);// Always remove first element. This contains the whole string
-
+        var_dump($matches);
         if($basepath!=''&&$basepath!='/'){
           array_shift($matches);// Remove basepath
         }
