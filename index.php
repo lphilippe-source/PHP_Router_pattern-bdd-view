@@ -1,13 +1,5 @@
 <?php
 require 'autoload.php';
-// var_dump(parse_url($_SERVER['REQUEST_URI']));
-// Add base route (startpage)
-
-
-// $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-// var_dump($parsed_url['path']);
-// var_dump($parsed_url);
-// var_dump($_SERVER['REQUEST_METHOD']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,15 +14,40 @@ require 'autoload.php';
     <div class="container">
     
     <?php
-    
+    route::add('/submit-add-news',function(){
+      $dbManager = DbManager::createDbManager();
+   $newsManager = NewsManager::createNewsManager();
+      $newsManager->addNews(array(
+        'auteur'=>$_POST['auteur'],
+        'titre'=>$_POST['titre'],
+        'contenu'=>$_POST['contenu']
+      ));
+      header('Location:/ocr2/admin');
+    }, 'post');
+
+  //   route::add('/submit-modifie-news',function(){
+  //   $dbManager = DbManager::createDbManager();
+  //   $newsManager = NewsManager::createNewsManager();
+  //     $dataNews = $newsManager->showOneNews($_POST['id']);
+  //     header('Location:/ocr2/admin');
+  //     include 'oneNews.php';
+  // }, 'post');
+
+    route::add('/submit-delete-news',function(){
+        if(isset($_POST['id3'])){
+          $newsManager->deleteNews($_POST['id3']);
+          header('Location:/ocr2/admin');
+        }
+    }, 'post');
+
     route::add('/admin',function(){
       // var_dump( Route::$routes);
     // echo $arg;
       echo '<h1 class="h1 text-center">//ADMIN</h1>';
-    function includeFileWithVariables($fileName, $variables) {
-      // $variables;
-      include $fileName;
-   }
+      function includeFileWithVariables($fileName, $variables) {
+        // $variables;
+        include $fileName;
+      }
    
   
    $dbManager = DbManager::createDbManager();
@@ -40,28 +57,29 @@ require 'autoload.php';
         $dbManager->selectDriver($_POST['PDOorMSQL']);
       }
     }
-    if(isset($_POST['upAddNews'])){
-      $newsManager->addNews(array(
-        'auteur'=>$_POST['auteur'],
-        'titre'=>$_POST['titre'],
-        'contenu'=>$_POST['contenu']
-      ));
-    }
+    // if(isset($_POST['upAddNews'])){
+    //   // Route::$setMethod('post');
+    //   $newsManager->addNews(array(
+    //     'auteur'=>$_POST['auteur'],
+    //     'titre'=>$_POST['titre'],
+    //     'contenu'=>$_POST['contenu']
+    //   ));
+    // }
     
     include 'pdo_mysqli.php';
     include 'newsform.php';
 
     if(!isset($_POST['updateThisNews'])){
-      if(isset($_POST['subThisNews'])){
-        $dataNews = $newsManager->showOneNews($_POST['id']);
+      if(isset($_GET['subThisNews'])){
+        $dataNews = $newsManager->showOneNews($_GET['id']);
         include 'oneNews.php';
       }
-      if(isset($_POST['del'])){
-        if(isset($_POST['id3'])){
-        $newsManager->deleteNews($_POST['id3']);
-        }else{
-        }
-      }
+      // if(isset($_POST['del'])){
+      //   if(isset($_POST['id3'])){
+      //   $newsManager->deleteNews($_POST['id3']);
+      //   }else{
+      //   }
+      // }
     }else{
       $dataNews = $newsManager->updateNews(array($_POST['id'], $_POST['auteur'],$_POST['titre'],$_POST['contenu']));
     }

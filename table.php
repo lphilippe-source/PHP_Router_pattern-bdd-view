@@ -24,7 +24,7 @@ $dCount = count($data);
   <?php
 
   for($i = 0;$i<$dCount;$i++){?>
-    <form action='' method='POST'>
+    <form action='/ocr2/admin' method='GET'>
       <tr>
         <th scope="row"><?php echo $i+1 ?></th>
         <input type="text" name="id" style="display:none" value=<?php echo $data[$i]->getId();?>>
@@ -35,9 +35,11 @@ $dCount = count($data);
         <td><?php  echo $data[$i]->getDateModif(); ?></td> 
         <td>
           <div style="float: right;">
+          <form action='/ocr2/submit-delete-news' method='POST'>
             <input type="text" name="id3" style="display:none" value=<?php echo $data[$i]->getId();?>>
 
             <input type="submit" class="btn btn-dark" name="del" value="X">
+          </form>
             <input type="submit" name="subThisNews" value="editer" class="btn btn-outline-secondary"/>
 
           </div>

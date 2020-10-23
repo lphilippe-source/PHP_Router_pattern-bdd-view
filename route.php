@@ -11,7 +11,6 @@ public static function add($expression, $function, $method = 'get'){
     'method' => $method
   ));
 }
-
 public static function pathNotFound($function){
   self::$pathNotFound = $function;
 }

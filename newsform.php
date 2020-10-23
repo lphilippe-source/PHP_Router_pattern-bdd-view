@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <br/>
 <h2 class="h2 blockquote-footer">Ajout d'une news</h2><br/>
 
-        <form method='POST' action=''>
+        <form method='POST' action='/ocr2/submit-add-news'>
         <div class="row">
             
             <div class="col">
