@@ -22,8 +22,7 @@ require 'autoload.php';
     <div class="container">
     
     <?php
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+    
     route::add('/admin',function(){
       // var_dump( Route::$routes);
     // echo $arg;
@@ -34,7 +33,8 @@ require 'autoload.php';
    }
    
   
-    
+   $dbManager = DbManager::createDbManager();
+   $newsManager = NewsManager::createNewsManager();
     if(isset($_POST['choixDb'])){
       if(isset($_POST['PDOorMSQL'])){
         $dbManager->selectDriver($_POST['PDOorMSQL']);
@@ -77,8 +77,13 @@ require 'autoload.php';
 ?>
 
     <?php route::add('/',function(){ 
+
+$dbManager = DbManager::createDbManager();
+$newsManager = NewsManager::createNewsManager();
       $data = $newsManager->showAllNews();
-      $dCount = count($data);?>
+      // var_dump($data);
+      $dCount = count($data);
+      ?>
       
       
 
