@@ -4,22 +4,22 @@ private static $routes = Array();
 private static $pathNotFound = null;
 private static $methodNotAllowed = null;
 
-public static function add($expression, $function, $method = 'get'){
+public static function add($expression, $function, $method = 'get'): void{
   array_push(self::$routes,Array(
     'expression' => $expression,
     'function' => $function,
     'method' => $method
   ));
 }
-public static function pathNotFound($function){
+public static function pathNotFound($function): void{
   self::$pathNotFound = $function;
 }
 
-public static function methodNotAllowed($function){
+public static function methodNotAllowed($function): void{
   self::$methodNotAllowed = $function;
 }
 
-public static function run($basepath = '/'){
+public static function run($basepath = '/'): void{
 
   // Parse current url    ["path"]=> string(6) "/ocr2/"
   $parsed_url = parse_url($_SERVER['REQUEST_URI']);//Parse Uri

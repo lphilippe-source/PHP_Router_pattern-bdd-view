@@ -16,7 +16,7 @@ require 'autoload.php';
     <?php
     route::add('/submit-add-news',function(){
       $dbManager = DbManager::createDbManager();
-   $newsManager = NewsManager::createNewsManager();
+      $newsManager = NewsManager::createNewsManager();
       $newsManager->addNews(array(
         'auteur'=>$_POST['auteur'],
         'titre'=>$_POST['titre'],
