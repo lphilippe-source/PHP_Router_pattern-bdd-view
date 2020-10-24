@@ -10,7 +10,7 @@
       'contenu'=>$_POST['contenu']
     ));
     header('Location:/ocr2/admin');
-  }, 'post');
+  },'post');
 
   Route::add('/update-news',function(){
     $dbManager = DbManager::createDbManager();
