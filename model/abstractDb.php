@@ -1,12 +1,9 @@
 <?php
-require 'autoload.php';
+require $_SERVER['PWD'].'/autoload.php';
 
-abstract class AbstractDb{
+abstract class AbstractDb_M{
 
-    // protected const HOST = getenv('HOST');
-    // protected const DB1 = getenv('DB');
-    // protected const USER = getenv('USER');
-    // protected const PASS = getenv('PASS');
+    
     protected const CHARSET = 'utf8mb4';
 
     abstract public function connectPDO();

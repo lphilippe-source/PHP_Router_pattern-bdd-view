@@ -1,7 +1,7 @@
 <?php
 
-require 'autoload.php';
-class NewsManager{
+require $_SERVER['PWD'].'/autoload.php';
+class NewsManager_M{
 
     private static object $manager;
 
@@ -26,7 +26,7 @@ class NewsManager{
             return $this->$func($arguments[0]);
     }
     public function getDb(): object{
-        return DbManager::getDb();
+        return DbManager_M::getDb();
     }
     public function setDateTime(): string{
         return date("Y-m-d H:i:s");

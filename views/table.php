@@ -1,5 +1,5 @@
 <?php
-require 'autoload.php';
+// require $_SERVER['PWD'].'/autoload.php';
 $data = $newsManager->showAllNews();
 $dCount = count($data);
 ?>

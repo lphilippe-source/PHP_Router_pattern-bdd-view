@@ -1,7 +1,7 @@
 <?php
-require 'autoload.php';
+// require $_SERVER['PWD'].'/autoload.php';
 
-class DbManager extends AbstractDb{
+class DbManager_M extends AbstractDb_M{
     protected const PDO_DRIVER = 'connectPDO';
     protected const MYSQLI_DRIVER = 'connectMysqli';
     static protected object $manager;

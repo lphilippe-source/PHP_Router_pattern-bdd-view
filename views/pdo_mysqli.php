@@ -1,8 +1,5 @@
 <?php
-spl_autoload_register(function (string $class): void {
-    $className = lcfirst ($class);
-    require $className.'.php';
-});
+// require $_SERVER['PWD'].'/autoload.php';
 
 ?>
 <br/>

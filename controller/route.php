@@ -1,11 +1,11 @@
 <?php 
-require 'autoload.php';
-class Route{
+require $_SERVER['PWD'].'/autoload.php';
+class Route_C{
 private static $routes = Array();
 private static $pathNotFound = null;
 private static $methodNotAllowed = null;
 
-public static function add(string $expression, callable $function, string $method = 'get'): void{
+public static function add( $expression, $function, string $method = 'get'): void{
   array_push(self::$routes,Array(
     'expression' => $expression,
     'function' => $function,

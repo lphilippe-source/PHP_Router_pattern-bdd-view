@@ -1,8 +1,8 @@
 <?php
 
-require 'autoload.php';
+require $_SERVER['PWD'].'/autoload.php';
 
-class News{
+class News_M{
 
     protected int $id;
     protected string $auteur;
