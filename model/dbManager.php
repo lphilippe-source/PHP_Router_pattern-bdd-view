@@ -4,10 +4,18 @@ require 'autoload.php';
 class DbManager extends AbstractDb{
     protected const PDO_DRIVER = 'connectPDO';
     protected const MYSQLI_DRIVER = 'connectMysqli';
-    static protected $manager;
+    static protected object $manager;
     protected static object $db;
+    protected string $host;
+    protected string $pass;
+    protected string $user;
+    protected string $db1;
 
     protected function __construct(){
+        $this->host = getenv('HOST');
+        $this->pass = getenv('PASS');
+        $this->user = getenv('USER');
+        $this->db1 = getenv('DB');
         isset($_SESSION['driver']) ? $this->selectDriver($_SESSION['driver']) : $this->setDb($this->connectDb());
     }
     private function __clone(){
@@ -16,7 +24,7 @@ class DbManager extends AbstractDb{
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         try {
             $_SESSION['driver']='connectMysqli';
-            $db = new mysqli(self::HOST, self::USER, self::PASS, self::DB1);
+            $db = new mysqli($this->host, $this->user, $this->pass, $this->db1);
             $db->set_charset(self::CHARSET);
             return $db;
         } 
@@ -29,13 +37,13 @@ class DbManager extends AbstractDb{
         try
         {
             $_SESSION['driver']='connectPDO';
-            $dsn = "mysql:host=".self::HOST.";dbname=".self::DB1.";charset=".self::CHARSET;
+            $dsn = "mysql:host=".$this->host.";dbname=".$this->db1.";charset=".self::CHARSET;
             $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
             ];
-            $db = new PDO($dsn, self::USER, self::PASS, $options);
+            $db = new PDO($dsn, $this->user, $this->pass, $options);
             return $db;
         }
         catch(Exception $e){

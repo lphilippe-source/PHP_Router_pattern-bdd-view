@@ -3,10 +3,10 @@ require 'autoload.php';
 
 abstract class AbstractDb{
 
-    protected const HOST = '127.0.0.1';
-    protected const DB1 = 'test';
-    protected const USER = 'root';
-    protected const PASS = 'Philemon1979';
+    // protected const HOST = getenv('HOST');
+    // protected const DB1 = getenv('DB');
+    // protected const USER = getenv('USER');
+    // protected const PASS = getenv('PASS');
     protected const CHARSET = 'utf8mb4';
 
     abstract public function connectPDO();

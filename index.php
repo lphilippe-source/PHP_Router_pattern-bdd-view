@@ -38,7 +38,6 @@
   },'post');
 
   Route::add('/admin',function(){
-    var_dump($_SESSION);
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
     $dbManager = DbManager::createDbManager();
     $newsManager = NewsManager::createNewsManager();
