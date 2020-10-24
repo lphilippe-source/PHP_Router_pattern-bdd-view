@@ -1,4 +1,5 @@
 <?php 
+require 'autoload.php';
 class Route{
 private static $routes = Array();
 private static $pathNotFound = null;

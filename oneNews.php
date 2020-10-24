@@ -21,7 +21,7 @@ require 'autoload.php';
 
   <tbody>
   
-<form action='' method='POST'>
+<form action='/ocr2/update-news' method='POST'>
   <tr>
   
     <th scope="row">#</th>
@@ -42,7 +42,9 @@ require 'autoload.php';
         </div></td>
     <td>
     <div style="float: right;">
-        <?php $_SESSION['idDel'] = (int) $dataNews[0]->getId();?>
+        <?php
+        //  $_SESSION['idDel'] = (int) $dataNews[0]->getId();
+         ?>
         <input type="text" name="id2" style="display:none" value=<?php echo $dataNews[0]->getId();?>>
 
         <input type="submit" class="btn btn-dark" name="del" value="<-">
