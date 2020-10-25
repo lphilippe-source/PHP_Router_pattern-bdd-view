@@ -1,5 +1,9 @@
 <?php
-
+/*
+*singleton qui gère la bdd
+*récupère les variables d'environnements
+*choisi le driver PDO(par default) ou Mysqli
+*/
 class DbManager_M extends AbstractDb_M{
     protected const PDO_DRIVER = 'connectPDO';
     protected const MYSQLI_DRIVER = 'connectMysqli';

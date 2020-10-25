@@ -1,6 +1,8 @@
 <?php
 require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
-
+/*
+*class auto-instancié par NewsManager
+*/
 class News_M{
 
     protected int $id;

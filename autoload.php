@@ -1,8 +1,8 @@
 <?php
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
-
+/*
+*autocharge les fichiers et met à jour la session
+*
+*/
 $autoload = (new class{
 
     private const M = 'model';
@@ -13,7 +13,7 @@ $autoload = (new class{
         if (session_status() == PHP_SESSION_NONE) session_start();
         spl_autoload_register(array($this,'load'));
     }
-    public function load(string $class): void{
+    private function load(string $class): void{
         $folder = explode('_',$class);
         require constant('self::'.$folder[1]).'/'.lcfirst($folder[0]).'.php';
     }
