@@ -1,6 +1,5 @@
 <?php
 require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
-var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
