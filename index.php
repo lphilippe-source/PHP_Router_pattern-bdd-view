@@ -1,7 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
-  include '/ocr2/views/header.php';
+  include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
 
 }
   Route_C::add('/submit-add-news',function(){
@@ -35,8 +35,8 @@ if (session_status() == PHP_SESSION_NONE) {
     }else{
       $dataNews = $newsManager->showOneNews($_POST['id']);
       echo '<h1 class="h1 text-center">//ADMIN</h1>';
-      include '/ocr2views/oneNews.php';
-      include '/ocr2views/table.php';
+      include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/oneNews.php';
+      include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/table.php';
     }
   },'post');
 
@@ -44,9 +44,9 @@ if (session_status() == PHP_SESSION_NONE) {
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
-    include 'views/pdo_mysqli.php';
-    include 'views/newsform.php';
-    include 'views/table.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/pdo_mysqli.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/newsform.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/table.php';
   });
 
   Route_C::add('/pdo-sqli',function(){
@@ -62,8 +62,8 @@ if (session_status() == PHP_SESSION_NONE) {
     $data = $newsManager->showAllNews();
     $data = array_reverse($data);
     $dCount = count($data);
-    include 'views/home.php';
-    include 'views/footer.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/home.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/footer.php';
   });
 
   Route_C::run('/ocr2');

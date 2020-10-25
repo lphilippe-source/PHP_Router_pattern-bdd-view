@@ -1,9 +1,9 @@
 <?php
-
-require $_SERVER['PWD'].'/autoload.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
+require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
+
 class NewsManager_M{
 
     private static object $manager;

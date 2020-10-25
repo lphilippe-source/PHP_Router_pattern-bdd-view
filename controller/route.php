@@ -1,5 +1,5 @@
 <?php 
-require $_SERVER['PWD'].'/autoload.php';
+require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
