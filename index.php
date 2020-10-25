@@ -39,6 +39,7 @@
 
   Route::add('/admin',function(){
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
+    var_dump($_SERVER);
     $dbManager = DbManager::createDbManager();
     $newsManager = NewsManager::createNewsManager();
     include 'pdo_mysqli.php';
