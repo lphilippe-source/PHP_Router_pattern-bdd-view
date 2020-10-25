@@ -1,20 +1,20 @@
 <?php
-  include 'header.php';
+include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
 
-  Route::add('/submit-add-news',function(){
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+  Route_C::add('/submit-add-news',function(){
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
     $newsManager->addNews(array(
       'auteur'=>$_POST['auteur'],
       'titre'=>$_POST['titre'],
       'contenu'=>$_POST['contenu']
     ));
     header('Location:/ocr2/admin');
-  }, 'post');
+  },'post');
 
-  Route::add('/update-news',function(){
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+  Route_C::add('/update-news',function(){
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
     if(!isset($_POST['updateThisNews'])){
       header('location:/ocr2/admin');
     }else{
@@ -23,46 +23,45 @@
     }
   },'post');
 
-  Route::add('/submit-delete-news',function(){
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+  Route_C::add('/submit-delete-news',function(){
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
     if (isset($_POST['del'])){
       $newsManager->deleteNews($_POST['id3']);
       header('Location:/ocr2/admin');
     }else{
       $dataNews = $newsManager->showOneNews($_POST['id']);
       echo '<h1 class="h1 text-center">//ADMIN</h1>';
-      include 'oneNews.php';
-      include 'table.php';
+      include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/oneNews.php';
+      include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/table.php';
     }
   },'post');
 
-  Route::add('/admin',function(){
+  Route_C::add('/admin',function(){
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
-    var_dump($_SERVER);
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
-    include 'pdo_mysqli.php';
-    include 'newsform.php';
-    include 'table.php';
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/pdo_mysqli.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/newsform.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/table.php';
   });
 
-  Route::add('/pdo-sqli',function(){
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+  Route_C::add('/pdo-sqli',function(){
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
     $dbManager->selectDriver($_POST['PDOorMSQL']);
     header('location:/ocr2/admin');
   },'post');
 
-  Route::add('/',function(){ 
-    $dbManager = DbManager::createDbManager();
-    $newsManager = NewsManager::createNewsManager();
+  Route_C::add('/',function(){ 
+    $dbManager = DbManager_M::createDbManager();
+    $newsManager = NewsManager_M::createNewsManager();
     $data = $newsManager->showAllNews();
     $data = array_reverse($data);
     $dCount = count($data);
-    include 'home.php';
-    include 'footer.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/home.php';
+    include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/footer.php';
   });
 
-  Route::run('/ocr2');
+  Route_C::run('/ocr2');
 ?>
