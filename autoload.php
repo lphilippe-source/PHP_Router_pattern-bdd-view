@@ -14,9 +14,9 @@
 // });
 
 
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $autoload = (new class{
 
@@ -29,7 +29,7 @@ $autoload = (new class{
     }
     public function load($class): void{
         $folder = explode('_',$class);
-        echo $_SERVER['REQUEST_URI'];
+        // echo $_SERVER['REQUEST_URI'];
         require constant('self::'.$folder[1]).'/'.lcfirst($folder[0]).'.php';
     }
 });

@@ -1,6 +1,9 @@
 <?php
 
 require $_SERVER['PWD'].'/autoload.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 class NewsManager_M{
 
     private static object $manager;
@@ -64,7 +67,7 @@ class NewsManager_M{
 
             $q2->execute();
             $result = $q2->get_result();
-            while($row = $result->fetch_object('News')) {
+            while($row = $result->fetch_object('News_M')) {
                 $arr[] = $row;
               }
             return $arr;
@@ -79,7 +82,7 @@ class NewsManager_M{
             $q2->execute(array(
                 'id' => $dataId
             ));
-            $result = $q2->fetchAll(PDO::FETCH_CLASS, 'News');
+            $result = $q2->fetchAll(PDO::FETCH_CLASS, 'News_M');
             return $result;
         }
         catch(Exception $e){
@@ -92,7 +95,7 @@ class NewsManager_M{
             $q2 = $this->getDb()->prepare('SELECT * FROM news ORDER BY id ASC;');
             $q2->execute();
             $result = $q2->get_result();
-            while($row = $result->fetch_object('News')) {
+            while($row = $result->fetch_object('News_M')) {
                 $arr[] = $row;
               }
             return $arr;
@@ -106,7 +109,7 @@ class NewsManager_M{
             $q2 = $this->getDb()->prepare('SELECT * FROM news ORDER BY id ASC');
             $q2->execute();
 
-            $result = $q2->fetchAll(PDO::FETCH_CLASS, 'News');
+            $result = $q2->fetchAll(PDO::FETCH_CLASS, 'News_M');
             return $result;
         }
         catch(Exception $e){

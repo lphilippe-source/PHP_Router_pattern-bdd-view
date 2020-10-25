@@ -1,5 +1,9 @@
 <?php
-require $_SERVER['PWD'].'/autoload.php';
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+require $_SERVER["DOCUMENT_ROOT"].'/autoload.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,4 +15,4 @@ require $_SERVER['PWD'].'/autoload.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
-    <div class="container">
+    <div class="container"><?php var_dump( $_SERVER); ?></div>

@@ -1,6 +1,9 @@
 <?php
-  include __DIR__.'/views/header.php';
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+  include '/ocr2/views/header.php';
 
+}
   Route_C::add('/submit-add-news',function(){
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
@@ -32,8 +35,8 @@
     }else{
       $dataNews = $newsManager->showOneNews($_POST['id']);
       echo '<h1 class="h1 text-center">//ADMIN</h1>';
-      include 'views/oneNews.php';
-      include 'views/table.php';
+      include '/ocr2views/oneNews.php';
+      include '/ocr2views/table.php';
     }
   },'post');
 

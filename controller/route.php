@@ -1,5 +1,8 @@
 <?php 
 require $_SERVER['PWD'].'/autoload.php';
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 class Route_C{
 private static $routes = Array();
 private static $pathNotFound = null;

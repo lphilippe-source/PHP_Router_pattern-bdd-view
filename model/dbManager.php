@@ -1,11 +1,13 @@
 <?php
 // require $_SERVER['PWD'].'/autoload.php';
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 class DbManager_M extends AbstractDb_M{
     protected const PDO_DRIVER = 'connectPDO';
     protected const MYSQLI_DRIVER = 'connectMysqli';
-    static protected object $manager;
-    protected static object $db;
+    static protected  $manager;
+    protected static  $db;
     protected string $host;
     protected string $pass;
     protected string $user;

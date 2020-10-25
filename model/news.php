@@ -1,7 +1,9 @@
 <?php
 
 require $_SERVER['PWD'].'/autoload.php';
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 class News_M{
 
     protected int $id;
