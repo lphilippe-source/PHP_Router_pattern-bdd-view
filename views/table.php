@@ -1,5 +1,4 @@
 <?php
-// require $_SERVER['PWD'].'/autoload.php';
 $data = $newsManager->showAllNews();
 $dCount = count($data);
 ?>
@@ -16,14 +15,11 @@ $dCount = count($data);
       <th scope="col">DateAjout</th>
       <th scope="col">DateModif</th>
       <th scope="col"></th>
-      
-
     </tr>
   </thead>
   <tbody>
-  <?php
-
-  for($i = 0;$i<$dCount;$i++){?>
+    <?php
+    for($i = 0;$i<$dCount;$i++){?>
     <form action='/ocr2/submit-delete-news' method='POST'>
       <tr>
         <th scope="row"><?php echo $i+1 ?></th>
@@ -46,8 +42,7 @@ $dCount = count($data);
         </td>
       </tr>
     </form>
-  <?php } ?>
-    
+    <?php } ?>
   </tbody>
 </table>
 

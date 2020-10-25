@@ -1,29 +1,27 @@
 <?php 
 require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-class Route_C{
-private static $routes = Array();
-private static $pathNotFound = null;
-private static $methodNotAllowed = null;
 
-public static function add( $expression, $function, string $method = 'get'): void{
+class Route_C{
+private static array $routes = [];
+private static ?bool $pathNotFound;
+private static ?bool $methodNotAllowed;
+
+public static function add( string $expression,callable $function, string $method = 'get'): void{
   array_push(self::$routes,Array(
     'expression' => $expression,
     'function' => $function,
     'method' => $method
   ));
 }
-public static function pathNotFound($function): void{
+public static function pathNotFound(callable $function): void{
   self::$pathNotFound = $function;
 }
 
-public static function methodNotAllowed($function): void{
+public static function methodNotAllowed(callable $function): void{
   self::$methodNotAllowed = $function;
 }
 
-public static function run($basepath = '/'): void{
+public static function run(string $basepath = '/'): void{
 
   // Parse current url    ["path"]=> string(6) "/ocr2/"
   $parsed_url = parse_url($_SERVER['REQUEST_URI']);//Parse Uri

@@ -1,9 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
 require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
-
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +13,4 @@ require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
   </head>
   <body>
     <div class="container">
-    <?php
-    //  var_dump( $_SERVER); ?>
-     <!-- </div> -->
+    

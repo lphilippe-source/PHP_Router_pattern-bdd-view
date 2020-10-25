@@ -1,7 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
 require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
 
 class NewsManager_M{
@@ -37,7 +34,7 @@ class NewsManager_M{
     public function addNews0(array $newsData): void{
         try{
             $q = $this->getDb()->prepare("INSERT INTO news (auteur, titre, contenu ) VALUES (?, ?, ?)");
-            $q->bind_param("sssss", $newsData['auteur'], $newsData['titre'], $newsData['contenu']);
+            $q->bind_param("sss", $newsData['auteur'], $newsData['titre'], $newsData['contenu']);
             $q->execute();
             $q->close();
         }catch(Exception $e){

@@ -1,8 +1,3 @@
-<?php
-// require $_SERVER['PWD'].'/autoload.php';
-
-
-?>
 <br/>
 <h2 class="h2 blockquote-footer">Ajout d'une news</h2><br/>
 

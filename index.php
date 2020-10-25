@@ -1,9 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-  include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
+include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
 
-}
   Route_C::add('/submit-add-news',function(){
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();

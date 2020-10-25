@@ -1,7 +1,3 @@
-<?php
-// require $_SERVER['PWD'].'/autoload.php';
-
-?>
 <br/>
 <h2 class="h2 blockquote-footer">Selection du driver</h2><br/>
 <form action='/ocr2/pdo-sqli' method='POST'>

@@ -1,14 +1,10 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
-require $_SERVER["CONTEXT_DOCUMENT_ROOT"].'/autoload.php';
 
 class DbManager_M extends AbstractDb_M{
     protected const PDO_DRIVER = 'connectPDO';
     protected const MYSQLI_DRIVER = 'connectMysqli';
-    static protected  $manager;
-    protected static  $db;
+    static protected object $manager;
+    protected static object $db;
     protected string $host;
     protected string $pass;
     protected string $user;
