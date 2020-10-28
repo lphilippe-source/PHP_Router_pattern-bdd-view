@@ -13,6 +13,7 @@
                     <p>
                         <a class='link' href="https://www.maxicoffee.com/">Maxicoffee</a>
                     </p>
+                    <div id="like_button_container"></div>
                 </nav>
                 
             </header>

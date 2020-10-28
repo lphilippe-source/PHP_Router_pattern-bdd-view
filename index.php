@@ -9,17 +9,17 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
       'titre'=>$_POST['titre'],
       'contenu'=>$_POST['contenu']
     ));
-    header('Location:/ocr2/admin');
+    header('Location:'.$_SERVER["CONTEXT_PREFIX"].'/admin');
   },'post');
 
   Route_C::add('/update-news',function(){
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
     if(!isset($_POST['updateThisNews'])){
-      header('location:/ocr2/admin');
+      header('location:'.$_SERVER["CONTEXT_PREFIX"].'/admin');
     }else{
       $dataNews = $newsManager->updateNews(array($_POST['id'], $_POST['auteur'],$_POST['titre'],$_POST['contenu']));
-      header('location:/ocr2/admin');
+      header('location:'.$_SERVER["CONTEXT_PREFIX"].'/admin');
     }
   },'post');
 
@@ -28,7 +28,7 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
     $newsManager = NewsManager_M::createNewsManager();
     if (isset($_POST['del'])){
       $newsManager->deleteNews($_POST['id3']);
-      header('Location:/ocr2/admin');
+      header('Location:'.$_SERVER["CONTEXT_PREFIX"].'/admin');
     }else{
       $dataNews = $newsManager->showOneNews($_POST['id']);
       echo '<h1 class="h1 text-center">//ADMIN</h1>';
@@ -39,6 +39,7 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
 
   Route_C::add('/admin',function(){
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
+    var_dump($_SERVER);
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
     include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/pdo_mysqli.php';
@@ -50,7 +51,7 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
     $dbManager->selectDriver($_POST['PDOorMSQL']);
-    header('location:/ocr2/admin');
+    header('location:'.$_SERVER["CONTEXT_PREFIX"].'/admin');
   },'post');
 
   Route_C::add('/',function(){ 
@@ -63,5 +64,5 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
     include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/footer.php';
   });
 
-  Route_C::run('/ocr2');
+  Route_C::run($_SERVER["CONTEXT_PREFIX"]);
 ?>
