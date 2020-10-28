@@ -39,7 +39,6 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
 
   Route_C::add('/admin',function(){
     echo '<h1 class="h1 text-center">//ADMIN</h1>';
-    var_dump($_SERVER);
     $dbManager = DbManager_M::createDbManager();
     $newsManager = NewsManager_M::createNewsManager();
     include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/pdo_mysqli.php';
