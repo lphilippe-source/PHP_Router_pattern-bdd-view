@@ -61,6 +61,9 @@ include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/header.php';
     $dCount = count($data);
     include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/home.php';
     include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/views/footer.php';
+    // var_dump($data);
+    // header('Content-Type: application/json;charset=utf-8');
+    // echo json_encode($data);
   });
 
   Route_C::run($_SERVER["CONTEXT_PREFIX"]);

@@ -131,6 +131,8 @@ class NewsManager_M{
             $q2->execute();
 
             $result = $q2->fetchAll(PDO::FETCH_CLASS, 'News_M');
+            // $result = $q2->fetchAll(PDO::FETCH_ASSOC);
+
             return $result;
         }
         catch(Exception $e){
